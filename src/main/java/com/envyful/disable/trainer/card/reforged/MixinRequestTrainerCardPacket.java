@@ -1,23 +1,33 @@
 package com.envyful.disable.trainer.card.reforged;
 
+import com.pixelmonmod.pixelmon.comm.data.AbstractPixelmonPacket;
+import com.pixelmonmod.pixelmon.comm.data.PacketDirection;
 import com.pixelmonmod.pixelmon.comm.packetHandlers.trainerCard.RequestTrainerCardPacket;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.event.network.CustomPayloadEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
-@Mixin(RequestTrainerCardPacket.Handler.class)
-public abstract class MixinRequestTrainerCardPacket implements IMessageHandler<RequestTrainerCardPacket, IMessage> {
+@Mixin(RequestTrainerCardPacket.class)
+public abstract class MixinRequestTrainerCardPacket extends AbstractPixelmonPacket {
+
+    protected MixinRequestTrainerCardPacket(PacketDirection direction) {
+        super(direction);
+    }
+
+    protected MixinRequestTrainerCardPacket(PacketDirection direction, boolean sync) {
+        super(direction, sync);
+    }
+
+    protected MixinRequestTrainerCardPacket(boolean sync) {
+        super(sync);
+    }
 
     /**
-     *
-     * Removes reply to the packet
-     *
-     * @author danorris709
+     * @author Daniel
+     * @reason Disable
      */
     @Overwrite(remap = false)
-    public IMessage onMessage(RequestTrainerCardPacket message, MessageContext ctx) {
-        return null;
+    public void handlePacket(CustomPayloadEvent.Context context) {
+        // Do nothing
     }
 }
