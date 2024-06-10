@@ -4,7 +4,7 @@
   "package": "com.envyful.disable.trainer.card.reforged",
   "refmap": "mixins.pixelmon.refmap.json",
   "target": "@env(DEFAULT)",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [
     "MixinRequestTrainerCardPacket"
   ],
